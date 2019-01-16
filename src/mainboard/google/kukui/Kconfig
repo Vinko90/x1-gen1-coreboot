@@ -1,0 +1,40 @@
+if BOARD_GOOGLE_KUKUI
+
+config VBOOT
+	select EC_GOOGLE_CHROMEEC_SWITCHES
+
+config BOARD_SPECIFIC_OPTIONS
+	def_bool y
+	select SOC_MEDIATEK_MT8183
+	select BOARD_ROMSIZE_KB_8192
+	select MAINBOARD_HAS_CHROMEOS
+	select COMMON_CBFS_SPI_WRAPPER
+	select SPI_FLASH
+	select FATAL_ASSERTS
+	select SPI_FLASH_INCLUDE_ALL_DRIVERS
+	select EC_GOOGLE_CHROMEEC
+	select EC_GOOGLE_CHROMEEC_SPI
+	select MAINBOARD_HAS_SPI_TPM_CR50 if VBOOT
+	select MAINBOARD_HAS_TPM2 if VBOOT
+
+config MAINBOARD_DIR
+	string
+	default google/kukui
+
+config MAINBOARD_PART_NUMBER
+	string
+	default "Kukui"
+
+config DRIVER_TPM_SPI_BUS
+	hex
+	default 0x0
+
+config BOOT_DEVICE_SPI_FLASH_BUS
+	int
+	default 1
+
+config EC_GOOGLE_CHROMEEC_SPI_BUS
+	hex
+	default 0x2
+
+endif
